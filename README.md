@@ -126,8 +126,129 @@ yarn start
 ![image](cover-02.png)
 
 ## 作者
-
 DavidWang
 # blog_demo
 
 Forked from [next-blog](https://github.com/safak/next-blog)
+
+
+## Docker 部署
+
+本项目支持使用 Docker 进行部署,提供完整的容器化解决方案。
+
+### 前置要求
+
+- Docker Engine 20.10.0+
+- Docker Compose v2.0.0+
+- 至少 2GB 可用内存
+- 至少 10GB 磁盘空间
+
+### 部署步骤
+
+1. 准备环境文件
+```bash
+# 复制 Docker 环境配置
+cp .env.docker .env
+```
+
+2. 构建和启动容器
+```bash
+# 构建并在后台启动所有服务
+docker-compose up -d --build
+```
+
+3. 初始化数据库
+```bash
+# 等待 MySQL 完全启动后执行
+docker exec -it blog_app sh
+
+# 在容器内执行数据库迁移
+npx prisma migrate deploy
+
+# 初始化种子数据
+yarn seed
+
+# 退出容器
+exit
+```
+
+4. 访问应用
+```
+http://localhost:3000
+```
+
+### 常用 Docker 命令
+
+```bash
+# 查看容器状态
+docker-compose ps
+
+# 查看应用日志
+docker-compose logs -f app
+
+# 查看数据库日志
+docker-compose logs -f mysql
+
+# 停止所有服务
+docker-compose down
+
+# 重启特定服务
+docker-compose restart app
+
+# 重建并重启所有服务
+docker-compose up -d --build --force-recreate
+```
+
+### 目录结构
+
+```
+.
+├── Dockerfile          # 应用容器配置
+├── docker-compose.yml  # 容器编排配置
+├── .dockerignore      # Docker 忽略文件
+└── .env.docker        # Docker 环境配置
+```
+
+### 注意事项
+
+1. 数据持久化
+- MySQL 数据存储在 Docker volume 中
+- 可以在 docker-compose.yml 中配置自定义存储路径
+- 删除容器不会影响持久化数据
+
+2. 网络配置
+- 应用和数据库通过内部网络 `blog_network` 通信
+- MySQL 端口 3306 映射到主机便于调试
+- 应用端口 3000 映射到主机供访问
+
+3. 安全考虑
+- 生产环境部署时需要修改默认密码
+- 建议使用环境变量注入敏感信息
+- 考虑添加 SSL 证书配置
+
+4. 性能优化
+- 可以调整 MySQL 配置以优化性能
+- 考虑使用 Redis 缓存提升性能
+- 生产环境建议使用 nginx 反向代理
+
+5. 故障排除
+- 检查容器日志定位问题
+- 确保数据库完全启动后再初始化
+- 网络问题可以尝试重建网络
+
+6. 备份策略
+- 定期备份 MySQL 数据
+- 可以使用 Docker volume 备份
+- 建议保留多个备份版本
+
+### 环境变量说明
+
+Docker 环境使用的环境变量存储在 `.env.docker` 文件中:
+
+```env
+MYSQL_URL         # MySQL 连接字符串
+NEXT_PUBLIC_API_URL   # API 地址
+NEXTAUTH_URL      # NextAuth 认证地址
+NEXTAUTH_SECRET   # NextAuth 密钥
+NODE_ENV          # 运行环境
+```
