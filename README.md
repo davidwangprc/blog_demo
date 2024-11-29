@@ -2,6 +2,7 @@
 
 一个使用 Next.js 13+ 构建的现代化博客系统,支持文章发布和菜谱分享功能。
 
+![image](cover-01.png)
 ## 功能特点
 
 ### 内容管理
@@ -122,19 +123,11 @@ yarn build
 yarn start
 ```
 
-## 贡献指南
-
-欢迎提交 Pull Request 和 Issue。在提交之前，请确保:
-
-1. 代码符合项目的编码规范
-2. 添加必要的测试
-3. 更新相关文档
-
-## 许可证
-
-MIT License
+![image](cover-02.png)
 
 ## 作者
 
 DavidWang
 # blog_demo
+
+Forked from [next-blog](https://github.com/safak/next-blog)
