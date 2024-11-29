@@ -1,0 +1,572 @@
+.container {
+  max-width: 1024px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 40px;
+  background: linear-gradient(135deg, #ff6b6b11 0%, #4ecdc411 100%);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.title {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: var(--softTextColor);
+}
+
+.formSection {
+  background: var(--softBg);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.mainInfo {
+  margin-bottom: 30px;
+}
+
+.input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 107, 107, 0.2);
+  border-radius: 10px;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+  background: var(--bg);
+  color: var(--textColor);
+}
+
+.input:focus {
+  border-color: #ff6b6b;
+  box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.1);
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: var(--textColor);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ingredientsSection {
+  margin-bottom: 30px;
+  padding: 20px;
+  background: var(--bg);
+  border-radius: 15px;
+}
+
+.ingredientsList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.ingredientItem {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  gap: 15px;
+  align-items: center;
+  padding: 15px;
+  background: var(--softBg);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.ingredientItem:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.ingredientInput {
+  padding: 10px;
+  border: 1px solid rgba(255, 107, 107, 0.2);
+  border-radius: 8px;
+  font-size: 14px;
+  background: var(--bg);
+  color: var(--textColor);
+}
+
+.removeIngredient {
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 0, 0, 0.1);
+  color: #ff6b6b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.removeIngredient:hover {
+  background: rgba(255, 0, 0, 0.2);
+}
+
+.removeIngredient:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.addIngredient {
+  padding: 12px;
+  background: rgba(255, 107, 107, 0.1);
+  border: 1px dashed rgba(255, 107, 107, 0.3);
+  border-radius: 10px;
+  color: #ff6b6b;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.addIngredient:hover {
+  background: rgba(255, 107, 107, 0.2);
+}
+
+.stepsInput {
+  width: 100%;
+  min-height: 200px;
+  padding: 15px;
+  border: 1px solid rgba(255, 107, 107, 0.2);
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 1.6;
+  resize: vertical;
+  background: var(--bg);
+  color: var(--textColor);
+}
+
+.publishButton {
+  width: 100%;
+  padding: 15px;
+  margin-top: 30px;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff5252 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.publishButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.2);
+}
+
+.publishButton:disabled {
+  background: #ffa8a8;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.switchBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 1px solid var(--softBg);
+  background: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--textColor);
+  font-size: 14px;
+}
+
+.btnIcon {
+  font-size: 16px;
+  transition: transform 0.3s ease;
+}
+
+.switchBtn:hover .btnIcon {
+  transform: translateY(-1px);
+}
+
+.switchBtn.active {
+  background: var(--softBg);
+  color: #ff6b6b;
+  border-color: #ff6b6b;
+}
+
+.uploadButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px;
+  border: 2px dashed var(--softBg);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--softTextColor);
+}
+
+.uploadIcon {
+  font-size: 20px;
+  transition: transform 0.3s ease;
+}
+
+.uploadButton:hover {
+  border-color: #ff6b6b;
+  color: #ff6b6b;
+}
+
+.uploadButton:hover .uploadIcon {
+  transform: translateY(-2px);
+}
+
+.urlInput {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.urlInputWrapper {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.urlIcon {
+  position: absolute;
+  left: 12px;
+  font-size: 16px;
+  color: var(--softTextColor);
+  transition: all 0.3s ease;
+}
+
+.urlField {
+  flex: 1;
+  width: 100%;
+  padding: 12px 12px 12px 40px;
+  border: 1px solid rgba(255, 107, 107, 0.2);
+  border-radius: 10px;
+  font-size: 14px;
+  background: var(--bg);
+  color: var(--textColor);
+  transition: all 0.3s ease;
+}
+
+.urlField:focus {
+  border-color: #ff6b6b;
+  box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.1);
+}
+
+.urlField:focus + .urlIcon {
+  color: #ff6b6b;
+}
+
+.urlSubmit {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 20px;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff5252 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submitIcon {
+  font-size: 14px;
+  transition: transform 0.3s ease;
+}
+
+.urlSubmit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.2);
+}
+
+.urlSubmit:hover .submitIcon {
+  transform: translateY(-1px);
+}
+
+.urlSubmit:disabled {
+  background: #ffa8a8;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.urlSubmit:disabled .submitIcon {
+  transform: none;
+}
+
+/* 暗色主题适配 */
+@media (prefers-color-scheme: dark) {
+  .formSection {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .ingredientItem {
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .input, .ingredientInput, .stepsInput {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .addIngredient {
+    background: rgba(255, 107, 107, 0.05);
+  }
+
+  .addIngredient:hover {
+    background: rgba(255, 107, 107, 0.1);
+  }
+
+  .switchBtn.active {
+    background: rgba(255, 107, 107, 0.1);
+  }
+
+  .uploadButton {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .uploadButton:hover {
+    border-color: #ff6b6b;
+  }
+
+  .urlField {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .urlField:focus {
+    border-color: #ff6b6b;
+    box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.1);
+  }
+
+  .urlIcon {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .urlField:focus + .urlIcon {
+    color: #ff6b6b;
+  }
+}
+
+/* 响应式设计 */
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 15px;
+    margin: 20px auto;
+  }
+
+  .header {
+    padding: 30px 20px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .formSection {
+    padding: 20px;
+  }
+
+  .ingredientItem {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .removeIngredient {
+    width: 100%;
+    height: 35px;
+    border-radius: 8px;
+  }
+
+  .urlInput {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .urlSubmit {
+    width: 100%;
+    justify-content: center;
+    padding: 12px;
+  }
+}
+
+.imageSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.imageUpload {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.imagePreview {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--softBg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.previewControls {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.imageContainer {
+  position: relative;
+  max-width: 100%;
+  max-height: 400px;
+  margin: 0 auto;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.positionControl, .sizeControl {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sliderGroup {
+  display: flex;
+  gap: 20px;
+}
+
+.sliderContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+}
+
+.slider {
+  width: 100%;
+  height: 4px;
+  -webkit-appearance: none;
+  background: var(--softBg);
+  border-radius: 2px;
+  outline: none;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #ff6b6b;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.slider::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+}
+
+.sizeInputs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sizeInputs input {
+  width: 70px;
+  padding: 5px;
+  border: 1px solid var(--softBg);
+  border-radius: 5px;
+  background: none;
+  color: var(--textColor);
+}
+
+.editSize, .confirmSize {
+  padding: 5px 10px;
+  border: 1px solid var(--softBg);
+  border-radius: 5px;
+  background: none;
+  color: var(--textColor);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.editSize:hover, .confirmSize:hover {
+  background: var(--softBg);
+}
+
+.removeImage {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 15px;
+  padding: 8px 16px;
+  background: none;
+  border: 1px solid #ff6b6b;
+  border-radius: 20px;
+  color: #ff6b6b;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.removeImage:hover {
+  background: #ff6b6b;
+  color: white;
+}
+
+.removeIcon {
+  font-size: 14px;
+}
+
+/* 暗色主题适配 */
+@media (prefers-color-scheme: dark) {
+  .imagePreview {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .slider {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .sizeInputs input {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .editSize, .confirmSize {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .editSize:hover, .confirmSize:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+}

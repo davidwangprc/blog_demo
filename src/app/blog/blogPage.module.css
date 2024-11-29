@@ -1,0 +1,110 @@
+.title {
+  width: 100%;
+  padding: 40px 20px;
+  margin: 0 0 30px 0;
+  text-align: center;
+  background: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, rgba(78, 205, 196, 0.1) 100%);
+  backdrop-filter: blur(10px);
+  border-radius: 0;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+}
+
+
+.content {
+  display: flex;
+  gap: 50px;
+}
+
+.pageSizeSelector {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+  padding: 15px;
+  background: var(--softBg);
+  border-radius: 10px;
+  font-size: 14px;
+  color: var(--textColor);
+}
+
+.pageSizeSelector span {
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.select {
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 107, 107, 0.2);
+  border-radius: 8px;
+  background-color: var(--bg);
+  color: var(--textColor);
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  min-width: 120px;
+}
+
+.select:hover {
+  border-color: #ff6b6b;
+  box-shadow: 0 2px 4px rgba(255, 107, 107, 0.1);
+}
+
+.select:focus {
+  outline: none;
+  border-color: #ff6b6b;
+  box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.1);
+}
+
+.select option {
+  background-color: var(--bg);
+  color: var(--textColor);
+  padding: 8px;
+}
+
+/* 暗色主题适配 */
+@media (prefers-color-scheme: dark) {
+  .title {
+    background: linear-gradient(135deg, 
+      rgba(255, 107, 107, 0.05) 0%, 
+      rgba(78, 205, 196, 0.05) 100%
+    );
+  }
+
+  .pageSizeSelector {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .select {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .select:hover {
+    border-color: #ff6b6b;
+    box-shadow: 0 2px 4px rgba(255, 107, 107, 0.2);
+  }
+}
+
+/* 响应式设计 */
+@media screen and (max-width: 768px) {
+  .title {
+    padding: 30px 15px;
+  }
+
+  .titleText {
+    font-size: 2rem;
+  }
+
+  .pageSizeSelector {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .select {
+    width: 100%;
+  }
+}
+

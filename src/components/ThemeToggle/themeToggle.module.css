@@ -1,0 +1,42 @@
+.container {
+    width: 60px;
+    height: 30px;
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    padding: 0 6px;
+    transition: all 0.3s ease;
+    border: 2px solid var(--softBg);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.ball {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    position: absolute;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.icon {
+    width: 14px;
+    height: 14px;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.container:hover .icon {
+    opacity: 1;
+    transform: scale(1.1);
+}
+

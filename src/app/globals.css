@@ -1,0 +1,158 @@
+/* CSS变量定义，用于全局主题颜色管理 */
+:root {
+    --bg: white;
+    /* 全局背景颜色变量 */
+    --textColor:black;
+    /* 全局文字颜色变量 */
+    --softBg:#f0f0f0;
+    /* 次要背景颜色变量 */
+    --softTextColor:#626262;
+    /* 次要文字颜色变量 */
+    --styleColor:#ffe8cc64;
+    /* 风格颜色变量 */
+    --fashionColor:#fff3bf64;
+    /* 时尚颜色变量 */
+    --travelColor:#e9fac864;
+    /* 旅行颜色变量 */
+    --foodColor:#d0ebff64;
+    /* 美食颜色变量 */
+    --cultureColor:#ffe3e364;
+    /* 文化颜色变量 */
+    --codingColor:#d3f9d864;
+    /* 编程颜色变量 */
+}
+
+
+/* 
+#####################################################
+全局样式 
+#####################################################
+*/
+/* 全局样式重置 */
+* {
+    margin: 0;
+    /* 去除默认外边距 */
+    padding: 0;
+    /* 去除默认内边距 */
+    box-sizing: border-box;
+    /* 包含边框和内边距在内的宽高计算 */
+}
+
+/* 页面主体结构 
+   应用于<body>标签，控制整个页面的基础布局
+*/
+body {
+    max-width: 100vw;
+    /* 最大宽度为视口宽度 */
+    overflow-x: hidden;
+    /* 隐藏水平溢出 */
+}
+
+/* 链接样式
+   应用于所有<a>标签，设置链接的基础样式
+*/
+a {
+    color: inherit;
+    /* 链接颜色继承父元素颜色 */
+    text-decoration: none;
+    /* 去除下划线 */
+}
+
+.dark {
+    --bg: #0f172a;
+    --textColor: #ddd;
+    --softBg: #1f273a;
+    --softTextColor: #a6a6a6;
+  }
+  
+  .light {
+    --bg: white;
+    --textColor: black;
+    --softBg: #f0f0f0;
+    --softTextColor: #626262;
+  }
+/* 主容器
+   应用于页面的主要容器div，通常是整个应用的包裹容器
+   示例：<div className="container">
+*/
+.container {
+    min-height: 100vh;
+    /* 最小高度为视口高度 */
+    background-color: var(--bg);
+    /* 使用根级别定义的背景颜色变量 */
+    color: var(--textColor);
+    /* 使用根级别定义的文字颜色变量 */
+}
+
+/* 内容包裹器
+   用于限制内容最大宽度并居中显示
+   通常作为主要内容区域的直接容器
+   示例：<div className="wrapper">
+*/
+.wrapper {
+    width: 1536px;
+    /* 固定宽度 */
+    margin-left: auto;
+    /* 水平居中 */
+    margin-right: auto;
+    /* 水平居中 */
+    padding-left: 80px;
+    /* 左侧内边距 */
+    padding-right: 80px;
+    /* 右侧内边距 */
+    /* background-color: #747d8c; */
+}
+
+/* 
+#####################################################
+响应式布局 
+#####################################################
+*/
+/* 屏幕断点 */
+@media screen and (max-width: 1536px) {
+    .wrapper {
+        max-width: 1366px;
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    .wrapper {
+        max-width: 1024px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .wrapper {
+        max-width: 768px;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .wrapper {
+        max-width: 640px;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .wrapper {
+        max-width: 475px;
+    }
+}
+
+/* 
+#####################################################
+React Quill 样式
+#####################################################
+*/
+.ql-container {
+    /* 字体大小为28px */
+    font-size: 28px !important;
+}
+
+.quill > .ql-container > .ql-editor.ql-blank::before {
+    color: #b3b3b1;
+    /* 设置空白的占位符颜色 */
+}
+

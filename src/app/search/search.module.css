@@ -1,0 +1,210 @@
+.container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.searchOptions {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.searchTypeSelector {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.typeButton {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.typeButton.active {
+  background-color: #ff6b6b;
+  color: white;
+}
+
+.dateRange {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.dateInput {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.tagLabel {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.rangeInputs {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.rangeGroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rangeInput {
+  width: 80px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.searchButton {
+  width: 100%;
+  padding: 12px;
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.searchButton:hover {
+  background-color: #ff5252;
+}
+
+.searchButton:disabled {
+  background-color: #ffa8a8;
+  cursor: not-allowed;
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.noResults {
+  text-align: center;
+  color: #666;
+  padding: 40px;
+}
+
+@media screen and (max-width: 768px) {
+  .searchTypeSelector {
+    flex-direction: column;
+  }
+
+  .rangeGroup {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .dateRange {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.ingredientsSelect {
+  margin-bottom: 20px;
+}
+
+.ingredientsSelect h3 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.ingredientsList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 10px;
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.ingredientLabel {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.ingredientLabel:hover {
+  background-color: #e9ecef;
+  border-radius: 4px;
+}
+
+.selectedIngredients {
+  margin-top: 15px;
+}
+
+.selectedIngredients h4 {
+  margin-bottom: 8px;
+  color: #666;
+}
+
+.ingredientTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ingredientTag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  background-color: #ff6b6b;
+  color: white;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.ingredientTag:hover {
+  background-color: #ff5252;
+}
+
+@media screen and (max-width: 768px) {
+  .ingredientsList {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  }
+} 

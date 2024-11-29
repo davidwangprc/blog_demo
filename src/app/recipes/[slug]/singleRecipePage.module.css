@@ -1,0 +1,154 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.infoContainer {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.textContainer {
+  flex: 1;
+}
+
+.title {
+  font-size: 48px;
+  margin-bottom: 30px;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.userImageContainer {
+  width: 50px;
+  height: 50px;
+  position: relative;
+}
+
+.avatar {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.userTextContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  color: var(--softTextColor);
+}
+
+.username {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.imageContainer {
+  flex: 1;
+  height: 350px;
+  position: relative;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.recipeDetails {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  background-color: var(--softBg);
+  border-radius: 10px;
+}
+
+.detail {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.section {
+  margin-top: 20px;
+}
+
+.section h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.ingredients {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ingredient {
+  padding: 10px;
+  background-color: var(--softBg);
+  border-radius: 5px;
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.step {
+  display: flex;
+  gap: 15px;
+  padding: 20px;
+  background-color: var(--softBg);
+  border-radius: 10px;
+}
+
+.stepNumber {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--textColor);
+}
+
+@media screen and (max-width: 1280px) {
+  .title {
+    font-size: 40px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .imageContainer {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .title {
+    font-size: 32px;
+  }
+  
+  .recipeDetails {
+    flex-direction: column;
+  }
+}
+
+.description {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.6;
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #ff6b6b;
+}

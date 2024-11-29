@@ -1,0 +1,89 @@
+/* 导航栏容器样式 */
+.container {
+    display: flex;                    /* 使用弹性布局 */
+    align-items: center;             /* 垂直居中对齐 */
+    justify-content: space-between;   /* 水平方向均匀分布子元素 */
+    height: 100px;                   /* 设置导航栏高度 */
+    padding: 0 40px;                 /* 添加水平内边距 */
+}
+
+/* 社交媒体图标容器样式 */
+.icons {
+    display: flex;                    /* 使用弹性布局 */
+    gap: 20px;                       /* 设置图标之间的间距 */
+    flex: 1;                         /* 占据剩余空间的 1/3 */
+}
+
+/* Logo 样式 */
+.logo {
+    font-size: 20px;                 /* 设置字体大小 */
+    font-weight: bold;               /* 设置字体粗细 */
+    text-align: center;              /* 文本居中对齐 */
+    flex: 1;                         /* 占据剩余空间的 1/3 */
+}
+
+/* 导航链接容器样式 */
+.links {
+    display: flex;                    /* 使用弹性布局 */
+    align-items: center;             /* 垂直居中对齐 */
+    justify-content: space-between;   /* 链接之间均匀分布 */
+    gap: 10px;                       /* 设置固定间距 */
+    flex: 1;                         /* 占据剩余空间的 1/3 */
+    max-width: 600px;                /* 限制最大宽度 */
+    margin-left: auto;               /* 靠右对齐 */
+}
+
+.link {
+    color: var(--textColor);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+.link:hover {
+    color: #ff6b6b;
+    background-color: var(--softBg);
+}
+
+@media screen and (max-width: 1280px) {
+    .logo {
+        font-size: 20px;
+    }
+    .links {
+        font-size: 15px;
+        gap: 20px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .icons {
+        display: none;
+    }
+    .logo {
+        text-align: left;
+    }
+    .links {
+        gap: 15px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .logo {
+        font-size: 15px;
+    }
+    .links {
+        gap: 10px;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .links {
+        justify-content: flex-end;
+    }
+    .link {
+        display: none;
+    }
+}

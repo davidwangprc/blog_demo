@@ -1,0 +1,16 @@
+.editButton {
+    padding: 8px 16px;
+    background-color: var(--bg);
+    color: var(--textColor);
+    border: 1px solid var(--textColor);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    margin-left: 10px;
+}
+
+.editButton:hover {
+    background-color: var(--textColor);
+    color: var(--bg);
+} 

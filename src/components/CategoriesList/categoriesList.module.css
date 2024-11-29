@@ -1,0 +1,61 @@
+.container{
+}
+
+.title{
+    margin:30px 0px;
+}
+
+.categories{
+    margin-top: 5px;
+    display: flex;
+    flex-wrap: wrap; /* 自动换行 */
+    justify-content: space-between;
+    gap: 20px;
+
+}
+
+.categoryItem{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-transform: capitalize;
+    width: 15%;
+    height: 80px;
+    justify-content: center;
+    border-radius: 10px;
+    
+}
+
+.style{
+    background-color: var(--styleColor);
+}
+
+.fashion{
+    background-color: var(--fashionColor);
+}
+
+.travel{
+    background-color: var(--travelColor);
+}
+
+.food{
+    background-color: var(--foodColor);
+}
+
+.culture{
+    background-color: var(--cultureColor);
+}
+
+.coding{
+    background-color: var(--codingColor);
+}
+
+.image{
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.categoryText{
+    font-size: 18px;
+}
+

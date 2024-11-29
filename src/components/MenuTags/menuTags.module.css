@@ -1,0 +1,112 @@
+.container {
+  margin-bottom: 30px;
+  padding: 20px;
+  background: var(--softBg);
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.container:hover {
+  transform: translateY(-5px);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #ff6b6b33;
+}
+
+.headerIcon {
+  font-size: 24px;
+  color: #ff6b6b;
+}
+
+.headerTitle {
+  font-size: 1.5rem;
+  color: var(--textColor);
+  margin: 0;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.tag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: var(--bg);
+  border-radius: 20px;
+  color: var(--textColor);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 107, 107, 0.2);
+}
+
+.tag:hover {
+  background: #ff6b6b;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.tagIcon {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.tagName {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.tagCount {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  background: rgba(255, 107, 107, 0.1);
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.fireIcon {
+  font-size: 10px;
+  color: #ff6b6b;
+}
+
+.tag:hover .tagCount {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.tag:hover .fireIcon {
+  color: #fff;
+}
+
+@media screen and (max-width: 1024px) {
+  .tags {
+    justify-content: center;
+  }
+  
+  .container {
+    padding: 15px;
+  }
+}
+
+/* 暗色主题适配 */
+@media (prefers-color-scheme: dark) {
+  .container {
+    background: rgba(255, 255, 255, 0.05);
+  }
+  
+  .tag {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 107, 107, 0.3);
+  }
+} 
