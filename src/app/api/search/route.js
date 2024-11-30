@@ -18,7 +18,11 @@ export async function GET(req) {
           tags?.length ? { 
             OR: [
               { tags: { some: { id: { in: tags } } } },
+<<<<<<< HEAD
               { recipes: { some: { tags: { some: { id: { in: tags } } } } } },
+=======
+              { recipes: { some: { tags: { some: { id: { in: tags } } } } } }, // 添加了这个逗号
+>>>>>>> a1c02578788ad801e341092f83ef657bf98dc563
             ]
           } : {},
         ],
