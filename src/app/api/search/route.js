@@ -18,7 +18,7 @@ export async function GET(req) {
           tags?.length ? { 
             OR: [
               { tags: { some: { id: { in: tags } } } },
-              { recipes: { some: { tags: { some: { id: { in: tags } } } } }
+              { recipes: { some: { tags: { some: { id: { in: tags } } } } } },
             ]
           } : {},
         ],

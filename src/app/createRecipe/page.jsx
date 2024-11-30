@@ -24,7 +24,7 @@ export default function NewRecipe() {
   const [previewSize, setPreviewSize] = useState({ width: 200, height: 100 });
   const [isEditingSize, setIsEditingSize] = useState(false);
 
-  // 处理食材的添加、删除和更新
+  // 处理食材的添加、删除���更新
   const handleIngredientChange = (index, field, value) => {
     const newIngredients = [...ingredients]
     newIngredients[index][field] = value
@@ -76,7 +76,7 @@ export default function NewRecipe() {
     try {
       new URL(imageUrl);
     } catch (e) {
-      alert("请输入有效的图片URL");
+      alert("请输入有���的图片URL");
       return;
     }
 
@@ -171,6 +171,14 @@ export default function NewRecipe() {
                     className={styles.input}
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
+                />
+                
+                <textarea 
+                    placeholder="菜品简介" 
+                    className={styles.input}
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    rows={3}
                 />
 
                 <div className={styles.recipeDetails}>

@@ -1,29 +1,34 @@
+"use client";
+
 import Menu from "@/components/Menu/Menu";
 import styles from "./singlePostPage.module.css";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import EditButton from "@/components/EditButton/EditButton";
+import MarkdownContent from '@/components/MarkdownContent/MarkdownContent';
 
 // 获取单篇文章的函数
 async function getPost(slug) {
-  const res = await fetch(`http://localhost:3000/api/posts/${slug}`, {
-    cache: "no-store",
-  });
+  try {
+    const res = await fetch(`http://localhost:3000/api/posts/${slug}`, {
+      cache: "no-store",
+    });
 
-  if (!res.ok) {
+    if (!res.ok) {
+      return notFound();
+    }
+
+    const post = await res.json();
+    return post;
+  } catch (error) {
+    console.error("获取文章失败:", error);
     return notFound();
   }
-
-  return res.json();
 }
 
 const SinglePage = async ({ params }) => {
   const { slug } = params;
   const post = await getPost(slug);
-
-  if (!post) {
-    return notFound();
-  }
 
   // 格式化日期函数
   const formatDate = (dateString) => {
@@ -66,10 +71,22 @@ const SinglePage = async ({ params }) => {
                 {post.category.title}
               </span>
             )}
-            {post.tags && post.tags.length > 0 && (
+            {post.tags && post.tags.length > 0 ? (
               <div className={styles.tags}>
-                标签: {post.tags.map(tag => tag.name).join(', ')}
+                <span className={styles.tagsLabel}>标签:</span>
+                <div className={styles.tagsList}>
+                  {post.tags.map((tag) => {
+                    console.log("渲染标签:", tag);
+                    return (
+                      <span key={tag.id} className={styles.tag}>
+                        {tag.name}
+                      </span>
+                    );
+                  })}
+                </div>
               </div>
+            ) : (
+              <div className={styles.tags}>暂无标签</div>
             )}
             <EditButton postId={post.id} slug={post.slug} />
           </div>
@@ -88,10 +105,7 @@ const SinglePage = async ({ params }) => {
       </div>
       <div className={styles.content}>
         <div className={styles.post}>
-          <div
-            className={styles.description}
-            dangerouslySetInnerHTML={{ __html: post.content }}
-          />
+          <MarkdownContent content={post.content} />
           {post.updatedAt && post.updatedAt !== post.createdAt && (
             <div className={styles.updateInfo}>
               最后更新于: {formatDate(post.updatedAt)}

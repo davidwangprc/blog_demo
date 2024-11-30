@@ -2,6 +2,7 @@
 
 一个使用 Next.js 13+ 构建的现代化博客系统,支持文章发布和菜谱分享功能。
 
+![image](cover-01.png)
 ## 功能特点
 
 ### 内容管理
@@ -91,6 +92,68 @@ src/
 └── lib/              # 共享库
 ```
 
+## 常见问题解决方案
+
+### 标签数据不显示问题
+
+当使用 Prisma 查询包含关联数据(如标签)的内容时，需要明确指定要查询的字段：
+
+```javascript
+// 错误写法
+const post = await prisma.post.findUnique({
+  include: {
+    tags: true  // 简单的 include 可能导致数据不完整
+  }
+});
+
+// 正确写法
+const post = await prisma.post.findUnique({
+  include: {
+    tags: {
+      select: {
+        id: true,
+        name: true,
+        slug: true
+      }
+    }
+  }
+});
+```
+
+#### 解决步骤：
+
+1. 在 API 路由中明确指定需要查询的关联数据字段
+2. 添加适当的调试日志以跟踪数据流
+3. 确保前端组件正确处理可能为空的数据
+
+#### 调试技巧：
+
+```javascript
+// 在 API 路由中添加调试日志
+console.log("数据库查询结果:", post);
+console.log("文章标签:", post?.tags);
+
+// 在前端组件中添加条件渲染
+{post.tags && post.tags.length > 0 ? (
+  <div className={styles.tags}>
+    {post.tags.map(tag => (
+      <span key={tag.id} className={styles.tag}>
+        {tag.name}
+      </span>
+    ))}
+  </div>
+) : (
+  <div className={styles.tags}>暂无标签</div>
+)}
+```
+
+#### 注意事项：
+
+- 使用 Prisma 查询关联数据时，推荐使用 select 明确指定需要的字段
+- 添加适当的错误处理和空值检查
+- 在开发过程中保持良好的日志记录习惯
+- 考虑数据加载状态的处理
+
 ## API 接口
 
 ### 文章相关
@@ -122,19 +185,10 @@ yarn build
 yarn start
 ```
 
-## 贡献指南
-
-欢迎提交 Pull Request 和 Issue。在提交之前，请确保:
-
-1. 代码符合项目的编码规范
-2. 添加必要的测试
-3. 更新相关文档
-
-## 许可证
-
-MIT License
+![image](cover-02.png)
 
 ## 作者
-
 DavidWang
 # blog_demo
+
+Forked from [next-blog](https://github.com/safak/next-blog)

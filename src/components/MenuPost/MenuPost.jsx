@@ -32,6 +32,9 @@ const getLatestContent = async () => {
 const MenuPosts = async ({ withImage }) => {
   const items = await getLatestContent();
 
+  // 调试日志
+  console.log("Latest content loaded:", items);
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -42,6 +45,15 @@ const MenuPosts = async ({ withImage }) => {
         {items.map((item) => {
           const isRecipe = item.categoryId === 3;
           const path = isRecipe ? `/recipes/${item.slug}` : `/posts/${item.slug}`;
+          const categorySlug = item.category?.slug || 'food';
+          const categoryColorVar = `var(--category-${categorySlug}, var(--category-default))`;
+
+          // 调试日志
+          console.log(`Menu Post Item:`, {
+            title: item.title,
+            categorySlug,
+            colorVar: categoryColorVar
+          });
 
           return (
             <Link href={path} className={styles.item} key={`${item.id}-${isRecipe ? 'recipe' : 'post'}`}>
@@ -51,7 +63,13 @@ const MenuPosts = async ({ withImage }) => {
                 </div>
               )}
               <div className={styles.textContainer}>
-                <span className={`${styles.category} ${styles[item.category?.slug || 'food']}`}>
+                <span 
+                  className={styles.category}
+                  style={{
+                    backgroundColor: categoryColorVar,
+                    borderColor: categoryColorVar
+                  }}
+                >
                   {isRecipe ? 'Recipe' : item.category?.title}
                 </span>
                 <h3 className={styles.postTitle}>

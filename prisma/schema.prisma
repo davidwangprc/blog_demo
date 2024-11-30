@@ -94,7 +94,8 @@ model Tag {
   name      String    @unique
   slug      String    @unique
   posts     Post[]    
-  recipes   Recipe[]  // 添加这行，建立与 Recipe 的多对多关系
+  recipes   Recipe[]
+  bookmarks Bookmark[]  // 添加与 Bookmark 的关联
   createdAt DateTime  @default(now())
 }
 
@@ -118,5 +119,36 @@ model Ingredient {
   recipeId  Int
 
   @@index([recipeId])
+}
+
+// 网站收藏分类
+model BookmarkCategory {
+  id          Int        @id @default(autoincrement())
+  name        String     // 分类名称
+  slug        String     @unique
+  description String?    // 分类描述
+  color       String?    // 分类颜色
+  icon        String?    // 分类图标
+  bookmarks   Bookmark[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+// 收藏的网站
+model Bookmark {
+  id          Int              @id @default(autoincrement())
+  title       String           // 网站标题
+  url         String           // 网站地址
+  description String?          // 网站描述
+  icon        String?          // 网站图标
+  screenshot  String?   @db.LongText  // 使用 LongText 类型存储大型文本
+  category    BookmarkCategory @relation(fields: [categoryId], references: [id])
+  categoryId  Int
+  tags        Tag[]
+  featured    Boolean          @default(false)
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+  
+  @@index([categoryId])
 }
 

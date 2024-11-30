@@ -1,0 +1,128 @@
+.markdown {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--textColor);
+}
+
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+    margin: 2rem 0 1rem;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.markdown h1 { font-size: 2em; }
+.markdown h2 { font-size: 1.5em; }
+.markdown h3 { font-size: 1.25em; }
+
+.markdown p {
+    margin: 1rem 0;
+}
+
+.markdown blockquote {
+    padding: 0.5rem 1rem;
+    margin: 1rem 0;
+    border-left: 4px solid var(--softBg);
+    background-color: var(--softBg);
+    border-radius: 4px;
+}
+
+.markdown pre {
+    margin: 1rem 0;
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+}
+
+.markdown code {
+    background-color: var(--softBg);
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-size: 0.9em;
+    font-family: 'Fira Code', monospace;
+}
+
+.markdown img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+.markdown ul,
+.markdown ol {
+    padding-left: 2rem;
+    margin: 1rem 0;
+}
+
+.markdown li {
+    margin: 0.5rem 0;
+}
+
+.markdown table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+.markdown th,
+.markdown td {
+    border: 1px solid var(--softBg);
+    padding: 0.5rem;
+    text-align: left;
+}
+
+.markdown th {
+    background-color: var(--softBg);
+}
+
+/* 响应式样式 */
+@media screen and (max-width: 768px) {
+    .markdown {
+        font-size: 1rem;
+    }
+
+    .markdown h1 { font-size: 1.8em; }
+    .markdown h2 { font-size: 1.4em; }
+    .markdown h3 { font-size: 1.2em; }
+}
+
+/* 代码块样式优化 */
+.markdown pre > div {
+    border-radius: 8px !important;
+    padding: 1rem !important;
+}
+
+/* 链接样式 */
+.markdown a {
+    color: var(--textLink);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.markdown a:hover {
+    border-bottom-color: var(--textLink);
+}
+
+/* 强调文本样式 */
+.markdown strong {
+    font-weight: 600;
+    color: var(--textStrong);
+}
+
+.markdown em {
+    font-style: italic;
+    color: var(--textEm);
+}
+
+/* 水平线样式 */
+.markdown hr {
+    margin: 2rem 0;
+    border: none;
+    border-top: 1px solid var(--softBg);
+} 

@@ -9,6 +9,13 @@
     flex: 1;
     height: 350px;
     position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.imageContainer:hover{
+    transform: translateY(-5px);
 }
 
 .image{
@@ -29,29 +36,35 @@
 }
 
 .date{
-    color: #666;
+    color: var(--softTextColor);
     font-size: 14px;
 }
 
 .category{
-    color: #ff6b6b;
     font-weight: 500;
     text-transform: uppercase;
     font-size: 14px;
     padding: 3px 8px;
     border-radius: 10px;
-    background-color: #fff5f5;
+    border: 1px solid;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.category:hover{
+    opacity: 1;
 }
 
 .title{
     font-size: 24px;
     font-weight: bold;
     margin: 0;
-    transition: color 0.3s;
+    color: var(--textColor);
+    transition: all 0.3s ease;
 }
 
 .title:hover{
-    color: #ff6b6b;
+    color: var(--softTextColor);
 }
 
 .desc{
@@ -65,6 +78,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    color: var(--textColor);
 }
 
 .avatar{
@@ -75,20 +89,21 @@
 .line{
     width: 100%;
     border: none;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--softBg);
     margin: 0;
 }
 
 .link{
-    color: #ff6b6b;
+    color: inherit;
     font-weight: 500;
     text-decoration: none;
     width: max-content;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
+    opacity: 0.8;
 }
 
 .link:hover{
-    color: #ff5252;
+    opacity: 1;
     text-decoration: underline;
 }
 
@@ -109,5 +124,12 @@
     
     .desc{
         font-size: 14px;
+    }
+}
+
+/* 暗色主题适配 */
+@media (prefers-color-scheme: dark){
+    .line{
+        border-color: var(--softBg);
     }
 }

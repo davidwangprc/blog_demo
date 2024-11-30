@@ -65,7 +65,9 @@ export default async function SingleRecipePage({ params }) {
             {recipe.description && (
               <p className={styles.description}>{recipe.description}</p>
             )}
-            <EditButton id={recipe.id} slug={recipe.slug} isRecipe={true} />
+            <div className={styles.editButtonContainer}>
+              <EditButton id={recipe.id} slug={recipe.slug} isRecipe={true} />
+            </div>
             <div className={styles.user}>
               {recipe.author?.avatar && (
                 <div className={styles.userImageContainer}>

@@ -24,6 +24,7 @@ const EditRecipePage = ({ params }) => {
     const [imagePosition, setImagePosition] = useState({ x: 50, y: 50 });
     const [previewSize, setPreviewSize] = useState({ width: 200, height: 100 });
     const [isEditingSize, setIsEditingSize] = useState(false);
+    const [description, setDescription] = useState("");
 
     // 获取菜谱数据
     useEffect(() => {
@@ -36,6 +37,7 @@ const EditRecipePage = ({ params }) => {
                 
                 setRecipe(data);
                 setTitle(data.title);
+                setDescription(data.description || "");
                 setIngredients(data.ingredients.map(ing => ({
                     name: ing.name,
                     amount: ing.amount.toString(),
@@ -145,7 +147,7 @@ const EditRecipePage = ({ params }) => {
             ing.name.trim() && ing.amount && ing.unit.trim()
         );
         
-        if (!title || !isIngredientsValid || !steps) {
+        if (!title || !description || !isIngredientsValid || !steps) {
             alert('请填写所有必填字段');
             return;
         }
@@ -158,6 +160,7 @@ const EditRecipePage = ({ params }) => {
                 },
                 body: JSON.stringify({
                     title,
+                    description,
                     ingredients: ingredients.map(ing => ({
                         ...ing,
                         amount: parseFloat(ing.amount)
@@ -172,14 +175,14 @@ const EditRecipePage = ({ params }) => {
             });
 
             if (res.ok) {
-                router.push(`/recipes/${slug}`);
+                router.push(`/recipes/${recipe.slug}`);
             } else {
                 const data = await res.json();
-                alert(data.message);
+                throw new Error(data.message);
             }
         } catch (error) {
             console.error("Failed to update recipe:", error);
-            alert("更新失败");
+            alert("更新失败: " + error.message);
         }
     };
 
@@ -202,6 +205,14 @@ const EditRecipePage = ({ params }) => {
                         className={styles.input}
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
+                    />
+
+                    <textarea 
+                        placeholder="菜品简介" 
+                        className={styles.input}
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                        rows={3}
                     />
 
                     <div className={styles.recipeDetails}>

@@ -5,6 +5,12 @@ import dynamic from 'next/dynamic';
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { FaUpload, FaLink, FaImage, FaTimes } from 'react-icons/fa';
+import 'react-quill/dist/quill.snow.css';
+import hljs from 'highlight.js';
+import 'highlight.js/styles/github-dark.css';
+
+// 配置 highlight.js
+window.hljs = hljs;
 
 // 动态导入 ReactQuill
 const ReactQuill = dynamic(() => import('react-quill'), {
@@ -12,8 +18,37 @@ const ReactQuill = dynamic(() => import('react-quill'), {
     loading: () => <p>Loading editor...</p>
 });
 
-// 导入 ReactQuill 的样式
-import 'react-quill/dist/quill.bubble.css';
+// 修改 ReactQuill 的配置
+const modules = {
+    syntax: {
+        highlight: text => hljs.highlightAuto(text).value
+    },
+    toolbar: [
+        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+        ['bold', 'italic', 'underline', 'strike'],
+        [{ 'color': [] }, { 'background': [] }],
+        [{ 'align': [] }],
+        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+        [{ 'script': 'sub'}, { 'script': 'super' }],
+        ['blockquote', 'code-block'],
+        ['link', 'image', 'video'],
+        ['clean']
+    ],
+    clipboard: {
+        matchVisual: false
+    }
+};
+
+const formats = [
+    'header',
+    'bold', 'italic', 'underline', 'strike',
+    'color', 'background',
+    'align',
+    'list', 'bullet',
+    'script',
+    'blockquote', 'code-block',
+    'link', 'image', 'video'
+];
 
 // 定义 WritePage 组件
 const WritePage = () => {
@@ -530,20 +565,12 @@ const WritePage = () => {
                     <div className={styles.editor}>
                         <ReactQuill
                             className={styles.quillEditor}
-                            theme="bubble"
+                            theme="snow"
                             value={value}
                             onChange={setValue}
                             placeholder="开始写作..."
-                            modules={{
-                                toolbar: {
-                                    container: [
-                                        [{ 'header': [1, 2, 3, false] }],
-                                        ['bold', 'italic', 'underline', 'strike'],
-                                        ['link', 'image'],
-                                        ['clean']
-                                    ]
-                                }
-                            }}
+                            modules={modules}
+                            formats={formats}
                         />
                     </div>
                 </div>

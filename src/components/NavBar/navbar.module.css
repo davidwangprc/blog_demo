@@ -1,36 +1,127 @@
 /* 导航栏容器样式 */
 .container {
-    display: flex;                    /* 使用弹性布局 */
-    align-items: center;             /* 垂直居中对齐 */
-    justify-content: space-between;   /* 水平方向均匀分布子元素 */
-    height: 100px;                   /* 设置导航栏高度 */
-    padding: 0 40px;                 /* 添加水平内边距 */
+    display: flex;                    
+    align-items: center;             
+    justify-content: space-between;   
+    height: 100px;                   
+    padding: 0 20px;                 
+    gap: 40px;                       /* 添加主要组件之间的间距 */
 }
 
 /* 社交媒体图标容器样式 */
 .icons {
-    display: flex;                    /* 使用弹性布局 */
-    gap: 20px;                       /* 设置图标之间的间距 */
-    flex: 1;                         /* 占据剩余空间的 1/3 */
+    display: flex;                    
+    gap: 25px;                       
+    flex: 1;                         
+    justify-content: flex-start;     /* 图标靠左对齐 */
+    align-items: center;
+}
+
+.iconImage {
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.iconImage:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+/* 图标组样式 */
+.iconGroup {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding-right: 20px;
+    border-right: 2px solid var(--softBg);
 }
 
 /* Logo 样式 */
-.logo {
-    font-size: 20px;                 /* 设置字体大小 */
-    font-weight: bold;               /* 设置字体粗细 */
-    text-align: center;              /* 文本居中对齐 */
-    flex: 1;                         /* 占据剩余空间的 1/3 */
+.logoContainer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    text-align: center;
+    position: relative;
+    padding: 10px 20px;
+    border-radius: 12px;
+    max-width: 300px;               /* 限制最大宽度 */
+    margin: 0 auto;                 /* 水平居中 */
+    background: linear-gradient(
+        135deg,
+        rgba(var(--textColorRGB), 0.08) 0%,
+        rgba(var(--textColorRGB), 0.04) 100%
+    );
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);     /* 添加毛玻璃效果 */
+}
+
+/* 暗色主题下的样式调整 */
+:global(.dark) .logoContainer {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.05) 100%
+    );
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+}
+
+.logoContainer:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.logoIcon {
+    font-size: 24px;
+    color: var(--textColor);
+    animation: pulse 3s infinite ease-in-out;
+}
+
+.logoText {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.logoMain {
+    font-size: 22px;
+    font-weight: 700;
+    background: linear-gradient(45deg, var(--textColor), var(--softTextColor));
+    -webkit-background-clip: text;
+    color: transparent;
+    letter-spacing: 0.5px;
+}
+
+.logoSub {
+    font-size: 12px;
+    color: var(--softTextColor);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 /* 导航链接容器样式 */
 .links {
-    display: flex;                    /* 使用弹性布局 */
-    align-items: center;             /* 垂直居中对齐 */
-    justify-content: space-between;   /* 链接之间均匀分布 */
-    gap: 10px;                       /* 设置固定间距 */
-    flex: 1;                         /* 占据剩余空间的 1/3 */
-    max-width: 600px;                /* 限制最大宽度 */
-    margin-left: auto;               /* 靠右对齐 */
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex: 1;
+    max-width: 700px;
+    justify-content: flex-end;      /* 链接靠右对齐 */
 }
 
 .link {
@@ -39,7 +130,7 @@
     font-size: 16px;
     font-weight: 500;
     transition: all 0.3s ease;
-    padding: 8px 12px;
+    padding: 8px 5px;
     border-radius: 8px;
 }
 
@@ -49,12 +140,15 @@
 }
 
 @media screen and (max-width: 1280px) {
-    .logo {
-        font-size: 20px;
-    }
-    .links {
-        font-size: 15px;
+    .container {
         gap: 20px;
+        padding: 0 15px;
+    }
+    .logoContainer {
+        max-width: 250px;
+    }
+    .logoMain {
+        font-size: 15px;
     }
 }
 
@@ -62,20 +156,26 @@
     .icons {
         display: none;
     }
-    .logo {
+    .logoContainer {
         text-align: left;
-    }
-    .links {
-        gap: 15px;
+        padding: 8px 15px;
+        max-width: 200px;
     }
 }
 
 @media screen and (max-width: 768px) {
-    .logo {
+    .logoMain {
         font-size: 15px;
     }
+    .logoIcon {
+        font-size: 18px;
+    }
     .links {
-        gap: 10px;
+        gap: 1px;
+    }
+    .link {
+        font-size: 14px;
+        padding: 6px 2px;
     }
 }
 

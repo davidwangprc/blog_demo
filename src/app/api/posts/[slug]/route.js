@@ -6,6 +6,8 @@ export async function GET(req, { params }) {
     const { slug } = params;
 
     try {
+        console.log("正在查询文章:", slug);
+
         const post = await prisma.post.findUnique({
             where: {
                 slug: slug,
@@ -18,9 +20,18 @@ export async function GET(req, { params }) {
                     }
                 },
                 category: true,
-                tags: true,
+                tags: {
+                    select: {
+                        id: true,
+                        name: true,
+                        slug: true
+                    }
+                },
             },
         });
+
+        console.log("数据库查询结果:", post);
+        console.log("文章标签:", post?.tags);
 
         if (!post) {
             return NextResponse.json(
@@ -44,6 +55,8 @@ export async function PUT(req, { params }) {
     try {
         const { slug } = params;
         const body = await req.json();
+        console.log("更新请求体:", body);
+
         const { title, content, description, image, categoryId, tags } = body;
 
         // 验证必要字段
@@ -71,6 +84,7 @@ export async function PUT(req, { params }) {
         let tagsConnect = [];
         if (tags && Array.isArray(tags)) {
             tagsConnect = tags.map(tagId => ({ id: tagId }));
+            console.log("要连接的标签:", tagsConnect);
         }
 
         // 更新文章
@@ -94,6 +108,7 @@ export async function PUT(req, { params }) {
             }
         });
 
+        console.log("更新后的文章:", updatedPost);
         return NextResponse.json(updatedPost);
     } catch (error) {
         console.error("Error updating post:", error);

@@ -3,7 +3,6 @@ import './globals.css';
 import { Inter } from 'next/font/google';
 import NavBar from '@/components/NavBar/NavBar';
 import Footer from '@/components/Footer/Footer';
-import { ThemeContextProvider } from '@/context/ThemeContext';
 import ThemeProvider from '@/providers/ThemeProvider';
 import { AuthProvider } from "@/providers/AuthProvider";
 
@@ -16,20 +15,18 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="zh">
+    <html lang="zh" suppressHydrationWarning>
       <body className={inter.className}>
         <AuthProvider>
-          <ThemeContextProvider>
-            <ThemeProvider>
-              <div className="container">
-                <div className="wrapper">
-                  <NavBar />
-                  {children}
-                  <Footer />
-                </div>
+          <ThemeProvider>
+            <div className="container">
+              <div className="wrapper">
+                <NavBar />
+                {children}
+                <Footer />
               </div>
-            </ThemeProvider>
-          </ThemeContextProvider>
+            </div>
+          </ThemeProvider>
         </AuthProvider>
       </body>
     </html>

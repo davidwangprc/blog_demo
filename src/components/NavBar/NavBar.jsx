@@ -5,11 +5,40 @@ import Image from "next/image";
 import Link from "next/link";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
 import AuthLink from "../AuthLink/AuthLink";
+import { useTheme } from "next-themes";
+import { FaGithub, FaCode } from "react-icons/fa";
 
 const NavBar = () => {
     const [currentUser, setCurrentUser] = useState(null);
+    const { theme } = useTheme();
+    const [mounted, setMounted] = useState(false);
+
+    // 图标配置
+    const logos = {
+        civitai: {
+            light: "/logo_civitai_dark.png",
+            dark: "/logo_civitai_light.png"
+        },
+        youtube: {
+            light: "/logo_youtube_dark.png",
+            dark: "/logo_youtube_light.png"
+        },
+        github: {
+            light: "/logo_github_dark.png",
+            dark: "/logo_github_light.png"
+        },
+        bilibili: {
+            light: "/logo_bilibili_dark.png",
+            dark: "/logo_bilibili_light.png"
+        },
+        ollama: {
+            light: "/logo_ollama_dark.png",
+            dark: "/logo_ollama_light.png"
+        }
+    };
 
     useEffect(() => {
+        setMounted(true);
         const checkUser = async () => {
             try {
                 const response = await fetch("/api/auth/check", {
@@ -28,21 +57,38 @@ const NavBar = () => {
         checkUser();
     }, []);
 
+    // 避免服务端渲染不匹配
+    if (!mounted) {
+        return null;
+    }
+
     return (
         <div className={styles.container}>
             <div className={styles.icons}>
-                <Image src="/logo_civitai.png" alt="civitai" width={20} height={20} />
-                <Image src="/logo_youtube.png" alt="youtube" width={20} height={20} />
-                <Image src="/logo_github.png" alt="github" width={20} height={20} />
-                <Image src="/logo_bilibili.png" alt="bilibili" width={20} height={20} />
-                <Image src="/logo_ollama.png" alt="ollama" width={20} height={20} />
+                <div className={styles.iconGroup}>
+                    {Object.entries(logos).map(([name, paths]) => (
+                        <Image
+                            key={name}
+                            src={theme === 'dark' ? paths.dark : paths.light}
+                            alt={name}
+                            width={20}
+                            height={20}
+                            className={styles.iconImage}
+                        />
+                    ))}
+                </div>
+                <ThemeToggle />
             </div>
-            <div className={styles.logo}>
-                DavidWang's Blog
+            <div className={styles.logoContainer}>
+                <FaCode className={styles.logoIcon} />
+                <div className={styles.logoText}>
+                    <span className={styles.logoMain}>David Blog</span>
+                    <span className={styles.logoSub}>Code & Share</span>
+                </div>
             </div>
             <div className={styles.links}>
-                <ThemeToggle />
                 <Link href="/" className={styles.link}>Home</Link>
+                <Link href="/collection" className={styles.link}>Collection</Link>
                 <Link href="/search" className={styles.link}>Search</Link>
                 <Link href="/about" className={styles.link}>About</Link>
                 <AuthLink onUserChange={setCurrentUser} />

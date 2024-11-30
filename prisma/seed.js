@@ -159,6 +159,117 @@ async function main() {
         }
       });
     }
+
+    // 创建书签分类
+    const bookmarkCategories = [
+      {
+        name: "开发工具",
+        slug: "dev-tools",
+        description: "常用的开发工具和资源",
+        color: "#57c4ff31",
+        icon: "🛠️"
+      },
+      {
+        name: "AI 工具",
+        slug: "ai-tools",
+        description: "AI相关工具和资源",
+        color: "#7fb88133",
+        icon: "🤖"
+      },
+      {
+        name: "学习资源",
+        slug: "learning",
+        description: "编程学习资源",
+        color: "#da85c731",
+        icon: "📚"
+      },
+      {
+        name: "设计资源",
+        slug: "design",
+        description: "设计相关资源",
+        color: "#ff795736",
+        icon: "🎨"
+      }
+    ];
+
+    // 创建书签分类
+    const createdBookmarkCategories = {};
+    for (const category of bookmarkCategories) {
+      const createdCategory = await prisma.bookmarkCategory.create({
+        data: category
+      });
+      createdBookmarkCategories[category.slug] = createdCategory;
+    }
+    console.log('Bookmark categories seeded successfully');
+
+    // 创建示例书签
+    const sampleBookmarks = [
+      {
+        title: "GitHub",
+        url: "https://github.com",
+        description: "全球最大的代码托管平台",
+        icon: "/github-icon.png",
+        categoryId: createdBookmarkCategories['dev-tools'].id,
+        featured: true,
+        tags: {
+          create: [
+            { name: "开发工具", slug: "dev-tools" },
+            { name: "代码托管", slug: "code-hosting" }
+          ]
+        }
+      },
+      {
+        title: "ChatGPT",
+        url: "https://chat.openai.com",
+        description: "OpenAI 开发的 AI 聊天助手",
+        icon: "/chatgpt-icon.png",
+        categoryId: createdBookmarkCategories['ai-tools'].id,
+        featured: true,
+        tags: {
+          create: [
+            { name: "AI工具", slug: "ai-tools" },
+            { name: "聊天机器人", slug: "chatbot" }
+          ]
+        }
+      },
+      {
+        title: "MDN Web Docs",
+        url: "https://developer.mozilla.org",
+        description: "最全面的 Web 开发文档",
+        icon: "/mdn-icon.png",
+        categoryId: createdBookmarkCategories['learning'].id,
+        featured: false,
+        tags: {
+          create: [
+            { name: "文档", slug: "documentation" },
+            { name: "Web开发", slug: "web-dev" }
+          ]
+        }
+      },
+      {
+        title: "Figma",
+        url: "https://www.figma.com",
+        description: "专业的在线设计工具",
+        icon: "/figma-icon.png",
+        categoryId: createdBookmarkCategories['design'].id,
+        featured: false,
+        tags: {
+          create: [
+            { name: "设计工具", slug: "design-tools" },
+            { name: "UI设计", slug: "ui-design" }
+          ]
+        }
+      }
+    ];
+
+    // 创建书签
+    for (const bookmark of sampleBookmarks) {
+      await prisma.bookmark.create({
+        data: bookmark
+      });
+    }
+    console.log('Sample bookmarks seeded successfully');
+
   } catch (error) {
     if (error.code === 'P2002') {
       console.log('Some records already exist');

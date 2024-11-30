@@ -2,8 +2,10 @@
 import React from "react";
 import Image from "next/image";
 import styles from "./featuredContent.module.css";
-import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { FaGithub,FaYoutube } from 'react-icons/fa';
+import { FaBilibili } from "react-icons/fa6";
 import Link from "next/link";
+
 
 const FeaturedContent = () => {
     return (
@@ -24,13 +26,13 @@ const FeaturedContent = () => {
                             <FaGithub />
                             <span>GitHub</span>
                         </Link>
-                        <Link href="https://linkedin.com" className={styles.socialLink}>
-                            <FaLinkedin />
-                            <span>LinkedIn</span>
+                        <Link href="https://bilibili.com" className={styles.socialLink}>
+                            <FaBilibili />
+                            <span>Bilibili</span>
                         </Link>
-                        <Link href="https://twitter.com" className={styles.socialLink}>
-                            <FaTwitter />
-                            <span>Twitter</span>
+                        <Link href="    //youtube.com" className={styles.socialLink}>
+                            <FaYoutube />
+                            <span>Youtube</span>
                         </Link>
                     </div>
                 </div>

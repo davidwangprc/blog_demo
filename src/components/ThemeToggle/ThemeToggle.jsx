@@ -2,16 +2,30 @@
 
 import Image from "next/image";
 import styles from "./themeToggle.module.css";
-import { useContext } from "react";
-import { ThemeContext } from "@/context/ThemeContext";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 const ThemeToggle = () => {
-  const { toggle, theme } = useContext(ThemeContext);
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  // 避免服务端渲染不匹配
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
+
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
 
   return (
     <div
       className={styles.container}
-      onClick={toggle}
+      onClick={toggleTheme}
       style={{
         backgroundColor: theme === "dark" ? "rgba(255, 255, 255, 0.05)" : "rgba(15, 23, 42, 0.05)",
         borderColor: theme === "dark" ? "rgba(255, 255, 255, 0.1)" : "rgba(15, 23, 42, 0.1)"

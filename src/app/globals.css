@@ -1,61 +1,49 @@
 /* CSS变量定义，用于全局主题颜色管理 */
 :root {
     --bg: white;
-    /* 全局背景颜色变量 */
-    --textColor:black;
-    /* 全局文字颜色变量 */
-    --softBg:#f0f0f0;
-    /* 次要背景颜色变量 */
-    --softTextColor:#626262;
-    /* 次要文字颜色变量 */
-    --styleColor:#ffe8cc64;
-    /* 风格颜色变量 */
-    --fashionColor:#fff3bf64;
-    /* 时尚颜色变量 */
-    --travelColor:#e9fac864;
-    /* 旅行颜色变量 */
-    --foodColor:#d0ebff64;
-    /* 美食颜色变量 */
-    --cultureColor:#ffe3e364;
-    /* 文化颜色变量 */
-    --codingColor:#d3f9d864;
-    /* 编程颜色变量 */
+    --textColor: black;
+    --softBg: #f0f0f0;
+    --softTextColor: #626262;
+
+    /* 分类颜色变量 - 主题相关且高辨识度的配色 */
+    --category-comfyui: rgba(147, 51, 234, 0.15);    /* 紫色系，代表 AI 和创新 */
+    --category-reading: rgba(236, 72, 153, 0.15);    /* 粉色系，代表文学和阅读 */
+    --category-travel: rgba(34, 197, 94, 0.15);      /* 绿色系，代表自然和旅行 */
+    --category-food: rgba(234, 179, 8, 0.15);        /* 金色系，代表美食 */
+    --category-research: rgba(59, 130, 246, 0.15);   /* 蓝色系，代表研究和科技 */
+    --category-coding: rgba(244, 63, 94, 0.15);      /* 红色系，代表编程和技术 */
+    
+    /* 分类默认颜色 */
+    --category-default: rgba(148, 163, 184, 0.15);   /* 中性灰色，用作默认值 */
+
+    /* 分类文字颜色 - 用于深色模式下保持可读性 */
+    --category-comfyui-text: rgb(147, 51, 234);
+    --category-reading-text: rgb(236, 72, 153);
+    --category-travel-text: rgb(34, 197, 94);
+    --category-food-text: rgb(234, 179, 8);
+    --category-research-text: rgb(59, 130, 246);
+    --category-coding-text: rgb(244, 63, 94);
+    --category-default-text: rgb(148, 163, 184);
 }
 
-
-/* 
-#####################################################
-全局样式 
-#####################################################
-*/
 /* 全局样式重置 */
 * {
     margin: 0;
-    /* 去除默认外边距 */
     padding: 0;
-    /* 去除默认内边距 */
     box-sizing: border-box;
-    /* 包含边框和内边距在内的宽高计算 */
 }
 
-/* 页面主体结构 
-   应用于<body>标签，控制整个页面的基础布局
-*/
+/* 页面主体结构 */
 body {
     max-width: 100vw;
-    /* 最大宽度为视口宽度 */
     overflow-x: hidden;
-    /* 隐藏水平溢出 */
+    background-color: var(--bg);
 }
 
-/* 链接样式
-   应用于所有<a>标签，设置链接的基础样式
-*/
+/* 链接样式 */
 a {
     color: inherit;
-    /* 链接颜色继承父元素颜色 */
     text-decoration: none;
-    /* 去除下划线 */
 }
 
 .dark {
@@ -63,52 +51,34 @@ a {
     --textColor: #ddd;
     --softBg: #1f273a;
     --softTextColor: #a6a6a6;
-  }
+}
   
-  .light {
+.light {
     --bg: white;
     --textColor: black;
     --softBg: #f0f0f0;
     --softTextColor: #626262;
-  }
-/* 主容器
-   应用于页面的主要容器div，通常是整个应用的包裹容器
-   示例：<div className="container">
-*/
+}
+
+/* 主容器 */
 .container {
     min-height: 100vh;
-    /* 最小高度为视口高度 */
+    width: 100%;
     background-color: var(--bg);
-    /* 使用根级别定义的背景颜色变量 */
     color: var(--textColor);
-    /* 使用根级别定义的文字颜色变量 */
 }
 
-/* 内容包裹器
-   用于限制内容最大宽度并居中显示
-   通常作为主要内容区域的直接容器
-   示例：<div className="wrapper">
-*/
+/* 内容包裹器 */
 .wrapper {
-    width: 1536px;
-    /* 固定宽度 */
+    width: 100%;
+    max-width: 1536px;
     margin-left: auto;
-    /* 水平居中 */
     margin-right: auto;
-    /* 水平居中 */
     padding-left: 80px;
-    /* 左侧内边距 */
     padding-right: 80px;
-    /* 右侧内边距 */
-    /* background-color: #747d8c; */
 }
 
-/* 
-#####################################################
-响应式布局 
-#####################################################
-*/
-/* 屏幕断点 */
+/* 响应式布局 */
 @media screen and (max-width: 1536px) {
     .wrapper {
         max-width: 1366px;
@@ -132,27 +102,32 @@ a {
 @media screen and (max-width: 768px) {
     .wrapper {
         max-width: 640px;
+        padding-left: 30px;
+        padding-right: 30px;
     }
 }
 
 @media screen and (max-width: 640px) {
     .wrapper {
-        max-width: 475px;
+        max-width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
     }
 }
 
-/* 
-#####################################################
-React Quill 样式
-#####################################################
-*/
+@media screen and (max-width: 475px) {
+    .wrapper {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+/* React Quill 样式 */
 .ql-container {
-    /* 字体大小为28px */
     font-size: 28px !important;
 }
 
 .quill > .ql-container > .ql-editor.ql-blank::before {
     color: #b3b3b1;
-    /* 设置空白的占位符颜色 */
 }
 

@@ -17,12 +17,12 @@
   gap: 10px;
   margin-bottom: 20px;
   padding-bottom: 10px;
-  border-bottom: 2px solid #ff6b6b33;
+  border-bottom: 2px solid var(--softTextColor);
 }
 
 .headerIcon {
   font-size: 24px;
-  color: #ff6b6b;
+  color: var(--textColor);
 }
 
 .headerTitle {
@@ -78,6 +78,13 @@
   border-radius: 10px;
   font-size: 12px;
   width: max-content;
+  border: 1px solid;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.category:hover {
+  opacity: 1;
 }
 
 .postTitle {
@@ -106,37 +113,6 @@
   opacity: 0.7;
 }
 
-/* 保持原有的分类颜色 */
-.style {
-  background-color: #57c4ff31;
-  color: #57c4ff;
-}
-
-.fashion {
-  background-color: #da85c731;
-  color: #da85c7;
-}
-
-.food {
-  background-color: #7fb88133;
-  color: #7fb881;
-}
-
-.travel {
-  background-color: #ff795736;
-  color: #ff7957;
-}
-
-.culture {
-  background-color: #ffb04f45;
-  color: #ffb04f;
-}
-
-.coding {
-  background-color: #5e4fff31;
-  color: #5e4fff;
-}
-
 @media screen and (max-width: 1024px) {
   .container {
     padding: 15px;
@@ -151,10 +127,10 @@
 /* 暗色主题适配 */
 @media (prefers-color-scheme: dark) {
   .container {
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--softBg);
   }
   
   .item:hover {
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--bg);
   }
 }

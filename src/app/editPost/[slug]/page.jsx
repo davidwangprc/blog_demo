@@ -5,13 +5,49 @@ import dynamic from 'next/dynamic';
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { FaUpload, FaLink, FaTimes, FaImage } from 'react-icons/fa';
+import 'react-quill/dist/quill.snow.css';
+import hljs from 'highlight.js';
+import 'highlight.js/styles/github-dark.css';
+
+// 配置 highlight.js
+window.hljs = hljs;
 
 const ReactQuill = dynamic(() => import('react-quill'), {
     ssr: false,
     loading: () => <p>加载编辑器中...</p>
 });
 
-import 'react-quill/dist/quill.bubble.css';
+// 修改 ReactQuill 的配置
+const modules = {
+    syntax: {
+        highlight: text => hljs.highlightAuto(text).value
+    },
+    toolbar: [
+        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+        ['bold', 'italic', 'underline', 'strike'],
+        [{ 'color': [] }, { 'background': [] }],
+        [{ 'align': [] }],
+        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+        [{ 'script': 'sub'}, { 'script': 'super' }],
+        ['blockquote', 'code-block'],
+        ['link', 'image', 'video'],
+        ['clean']
+    ],
+    clipboard: {
+        matchVisual: false
+    }
+};
+
+const formats = [
+    'header',
+    'bold', 'italic', 'underline', 'strike',
+    'color', 'background',
+    'align',
+    'list', 'bullet',
+    'script',
+    'blockquote', 'code-block',
+    'link', 'image', 'video'
+];
 
 const EditPage = ({ params }) => {
     const { slug } = params;
@@ -204,6 +240,8 @@ const EditPage = ({ params }) => {
         }
 
         try {
+            console.log("准备更新文章，标签数据:", selectedTags); // 添加调试日志
+
             const res = await fetch(`/api/posts/${slug}`, {
                 method: "PUT",
                 headers: {
@@ -220,11 +258,13 @@ const EditPage = ({ params }) => {
                 credentials: "include"
             });
 
+            const responseData = await res.json();
+            console.log("更新响应:", responseData); // 添加调试日志
+
             if (res.ok) {
                 router.push(`/posts/${slug}`);
             } else {
-                const data = await res.json();
-                alert(data.message);
+                alert(responseData.message);
             }
         } catch (error) {
             console.error("Failed to update:", error);
@@ -513,20 +553,12 @@ const EditPage = ({ params }) => {
                     <div className={styles.editor}>
                         <ReactQuill
                             className={styles.quillEditor}
-                            theme="bubble"
+                            theme="snow"
                             value={value}
                             onChange={setValue}
                             placeholder="开始写作..."
-                            modules={{
-                                toolbar: {
-                                    container: [
-                                        [{ 'header': [1, 2, 3, false] }],
-                                        ['bold', 'italic', 'underline', 'strike'],
-                                        ['link', 'image'],
-                                        ['clean']
-                                    ]
-                                }
-                            }}
+                            modules={modules}
+                            formats={formats}
                         />
                     </div>
                 </div>

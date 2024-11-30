@@ -54,7 +54,8 @@ export async function PUT(req, { params }) {
     try {
         const body = await req.json();
         const { 
-            title, 
+            title,
+            description,
             ingredients,
             steps,
             image,
@@ -64,7 +65,7 @@ export async function PUT(req, { params }) {
         } = body;
 
         // 验证必填字段
-        if (!title || !ingredients || !steps) {
+        if (!title || !description || !ingredients || !steps) {
             return NextResponse.json(
                 { message: "Missing required fields" }, 
                 { status: 400 }
@@ -77,10 +78,11 @@ export async function PUT(req, { params }) {
             },
             data: {
                 title,
+                description,
                 steps,
                 image,
-                cookingTime,
-                servings,
+                cookingTime: cookingTime ? parseInt(cookingTime) : null,
+                servings: servings ? parseInt(servings) : null,
                 difficulty,
                 ingredients: {
                     deleteMany: {},

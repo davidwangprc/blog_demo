@@ -18,6 +18,9 @@ const getCategories = async () => {
 const MenuCategories = async () => {
   const categories = await getCategories();
 
+  // 调试日志
+  console.log("Menu Categories loaded:", categories);
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -25,16 +28,31 @@ const MenuCategories = async () => {
         <h2 className={styles.headerTitle}>分类浏览</h2>
       </div>
       <div className={styles.categoryList}>
-        {categories.map((category) => (
-          <Link
-            key={category.id}
-            href={`/blog?cat=${category.slug}`}
-            className={`${styles.categoryItem} ${styles[category.slug]}`}
-          >
-            <FaFolder className={styles.categoryIcon} />
-            <span className={styles.categoryName}>{category.title}</span>
-          </Link>
-        ))}
+        {categories.map((category) => {
+          // 使用与全局变量相同的命名方式
+          const categoryColorVar = `var(--category-${category.slug}, var(--category-default))`;
+          
+          // 调试日志
+          console.log(`Menu Category ${category.title}:`, {
+            slug: category.slug,
+            colorVar: categoryColorVar
+          });
+
+          return (
+            <Link
+              key={category.id}
+              href={`/blog?cat=${category.slug}`}
+              className={styles.categoryItem}
+              style={{
+                backgroundColor: categoryColorVar,
+                borderColor: categoryColorVar
+              }}
+            >
+              <FaFolder className={styles.categoryIcon} />
+              <span className={styles.categoryName}>{category.title}</span>
+            </Link>
+          );
+        })}
       </div>
     </div>
   );
